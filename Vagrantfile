@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "puppetlabs/centos-7.0-64-puppet"
+  # config.vm.box = "puppetlabs/centos-7.0-64-puppet"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -72,6 +72,9 @@ Vagrant.configure(2) do |config|
   # Application VM
   config.vm.define "app" do |app|
 
+    app.vm.box = "vagrant-lumberjack-kibana/app"
+    app.vm.box_url = "https://github.com/ladamalina/vagrant-lumberjack-kibana/releases/download/v0.1/app.box"
+
     app.vm.provider "virtualbox" do |vb|
       vb.memory = "256"
     end
@@ -88,6 +91,9 @@ Vagrant.configure(2) do |config|
 
   # ElasticSearch VM
   config.vm.define "es" do |es|
+
+    es.vm.box = "vagrant-lumberjack-kibana/es"
+    es.vm.box_url = "https://github.com/ladamalina/vagrant-lumberjack-kibana/releases/download/v0.1/es.box"
 
     es.vm.provider "virtualbox" do |vb|
       vb.memory = "1024"
